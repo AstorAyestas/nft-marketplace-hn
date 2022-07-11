@@ -2,11 +2,13 @@ import { NextPage } from "next";
 import { useRouter } from "next/router";
 import { useForm, SubmitHandler, useWatch } from "react-hook-form";
 import { create as ipfsHttpClient } from "ipfs-http-client";
-import Web3Modal from "web3modal";
 import { ethers } from "ethers";
 import NFT from "../../interfaces/NFT";
 import { marketplaceAddress } from "../../config";
 import NFTMarketplace from "../../artifacts/src/contracts/NFTMarketplace.sol/NFTMarketplace.json";
+import { useMetaMask } from "metamask-react";
+import Web3Modal from "web3modal";
+import toast, { Toaster } from "react-hot-toast";
 
 const Upload: NextPage = () => {
   const {
@@ -16,33 +18,37 @@ const Upload: NextPage = () => {
     control,
   } = useForm<NFT>();
   const router = useRouter();
+  const notify = () => toast.error("Metamask no instalado");
 
   const client = ipfsHttpClient({ url: "https://ipfs.infura.io:5001/api/v0" });
   const FileSelected = useWatch({ name: "file", control });
-
+  const { status } = useMetaMask();
   const onSubmit: SubmitHandler<NFT> = async (data) => {
-    const { name, description, price, file } = data;
+    if (status === "unavailable") {
+      notify();
+      console.log("wallet not unavailable");
+    } else {
+      const { name, description, price, file } = data;
 
-    try {
-      const imgResult = await client.add(file[0]);
-      const image = `https://ipfs.infura.io/ipfs/${imgResult.path}`;
-      const result = await client.add(
-        JSON.stringify({ image, name, description, price })
-      );
-      mintTheNFT(result, price);
-    } catch (error) {
-      console.error("error in upload to ipfs action", error);
+      try {
+        const imgResult = await client.add(file[0]);
+        const image = `https://ipfs.infura.io/ipfs/${imgResult.path}`;
+        const result = await client.add(
+          JSON.stringify({ image, name, description, price })
+        );
+        mintTheNFT(result, price);
+      } catch (error) {
+        console.error("error in upload to ipfs action", error);
+      }
     }
   };
 
   const mintTheNFT = async (result: { path: string }, NFTPrice: number) => {
-    // connect to the wallet
     const web3Modal = new Web3Modal();
-    const connection = await web3Modal.connect();
-    const provider = new ethers.providers.Web3Provider(connection);
+    const ethereum = await web3Modal.connect();
+    const provider = new ethers.providers.Web3Provider(ethereum);
     const signer = provider.getSigner();
 
-    // create the nft
     const price = ethers.utils.parseUnits(NFTPrice.toString(), "ether");
     const contract = new ethers.Contract(
       marketplaceAddress,
@@ -60,7 +66,7 @@ const Upload: NextPage = () => {
   };
 
   return (
-    <div className="mt-8 flex flex-col justify-center">
+    <div className="mx-4 mt-8 flex flex-col items-center justify-center space-y-4">
       <h1 className="leading-2 mb-4 text-2xl font-semibold text-gray-600">
         Crear nuevo activo digital
       </h1>
@@ -70,7 +76,7 @@ const Upload: NextPage = () => {
         onSubmit={handleSubmit(onSubmit)}
       >
         <span className="text-xs text-gray-500 ">
-          Tipos de archivo soportados: JPG, PNG, JPE
+          Tipos de archivo soportados: JPG, PNG, JPE, WEBP
         </span>
         <div className="flex items-center">
           {FileSelected && (
@@ -83,7 +89,7 @@ const Upload: NextPage = () => {
           <label className="block">
             <input
               {...register("file", { required: true })}
-              accept=".png, .jpg, .jpe"
+              accept=".png, .jpg, .jpe, .webp"
               type="file"
               className="block w-full text-sm text-gray-500 file:mr-4 file:rounded-full file:border-0 file:bg-blueTurquoise-50 file:py-2 file:px-4 file:text-sm file:font-semibold file:text-blueTurquoise-700 hover:file:bg-blueTurquoise-100"
             />
@@ -138,9 +144,10 @@ const Upload: NextPage = () => {
         <input
           type="submit"
           value="Cargar"
-          className="rounded border border-blueTurquoise-700 bg-blueTurquoise-500 py-2 px-4 font-bold text-white hover:bg-blueTurquoise-700"
+          className="rounded border border-blueTurquoise-700 bg-blueTurquoise-500 px-4 py-2 font-bold text-white hover:bg-blueTurquoise-700"
         />
       </form>
+      <Toaster />
     </div>
   );
 };

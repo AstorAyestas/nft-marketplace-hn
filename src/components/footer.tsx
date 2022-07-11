@@ -1,14 +1,13 @@
-import Link from "next/link";
 import React from "react";
 
 const Footer = () => {
   return (
-    <footer className="py-2 px-4 text-gray-600">
+    <footer className="bg-gradient-to-r from-[#accbee] to-[#e7f0fd] px-4 py-4 text-slate-600">
       <h5 className="text-center">
         NFT Marketplace para propósitos educativos
       </h5>
-      <p className="font leading-6 ">
-        Esta es una implementación del mercado de NFTs y es parte de la tesis
+      <p className="font text-justify leading-6">
+        Esta es una implementación de un mercado de NFTs y es parte de la tesis
         titulada mercado de activos digitales impulsados por Blockchain, NFTs y
         web 3 en el mercado hondureño. Como parte de la maestría en gestión de
         las tecnologías de la información. Dicho desarrollo busca generar más

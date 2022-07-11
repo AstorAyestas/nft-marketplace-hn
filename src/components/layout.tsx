@@ -8,9 +8,9 @@ type LayoutProps = {
 
 const Layout = ({ children }: LayoutProps) => {
   return (
-    <div className="flex h-screen flex-col justify-between">
+    <div className="flex flex-col justify-between h-screen">
       <Header />
-      <main className="my-4 flex justify-center">{children}</main>
+      <main className="my-4 ">{children}</main>
       <Footer />
     </div>
   );

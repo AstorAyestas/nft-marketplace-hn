@@ -2,7 +2,7 @@ import React from "react";
 import Image from "next/image";
 import Asset from "../interfaces/Asset";
 import { createAvatar } from "@dicebear/avatars";
-import * as style from "@dicebear/pixel-art";
+import * as style from "@dicebear/avatars-identicon-sprites";
 
 const Card = ({
   asset,
@@ -21,10 +21,10 @@ const Card = ({
         height={500}
       />
       <div className="flex justify-between">
-        <strong className=" text-xl font-semibold capitalize tracking-tight text-gray-900">
+        <strong className="text-xl font-semibold capitalize tracking-tight text-gray-900 ">
           {asset.name}
         </strong>
-        <span className="bg-gradient-to-r from-cyan-500 to-lime-500 bg-clip-text font-bold text-transparent">
+        <span className="bg-gradient-to-r from-[#9be15d] to-[#00e3ae] bg-clip-text font-bold text-transparent">
           {asset.price} ETH
         </span>
       </div>
@@ -32,7 +32,7 @@ const Card = ({
         <p className="font-normal capitalize text-gray-700">
           {asset.description}
         </p>
-        <Image src={getAvatar(asset.owner)} width={45} height={45} />
+        <Image src={getAvatar(asset.owner)} width={35} height={35} />
       </div>
 
       {children}

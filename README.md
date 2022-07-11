@@ -5,9 +5,33 @@ En el Marketplace se pueden tranzar imágenes que representen un activo de la vi
 
 El desarrollo del sistema se realizo en etapas utilizando la metodología de desarrollo de proyectos agiles scrum.
 
+## Imágenes
+
+**Página donde se crean los activos digitales**
+
+<img width="388" alt="nft marketplace crear" style="margin-right:10px" src="https://user-images.githubusercontent.com/90588076/178179884-850842e3-b0fb-4979-8e2e-b8e5fc43983f.png">
+
+**Página donde se listan todos los activos digitales disponibles de venta**
+
+<img width="676" alt="nft marketplace home" style="margin-right:10px" src="https://user-images.githubusercontent.com/90588076/178179891-e475a47f-2c49-433c-8c18-2f880748f19b.png">
+
+**Página donde se listan todos los activos dititales del usuario que tiene conectada la cartera**
+
+<img width="674" alt="nft marketplace mis compras" style="margin-right:10px" src="https://user-images.githubusercontent.com/90588076/178179900-60f07958-e9b0-40bd-a281-6a36ba767639.png">
+
+**Acción donde se ponen en venta los activos digitales ya adquiridos por el usuario que tiene contectada la cartera**
+
+<img width="380" alt="nft marketplace poner en venta" style="margin-right:10px" src="https://user-images.githubusercontent.com/90588076/178179907-0fbbb1bb-b3e0-45cc-a53c-a5f568e23ab3.png">
+
 **Enlace del proyecto:**
 
 - [Repositorio de código abierto ](https://github.com/AstorAyestas/nft-marketplace-hn)
+
+## Teoría
+
+¿Qué es un token no fungible? Fungible significa ser igual o intercambiable, por ejemplo, Eth es fungible. Con esto en mente, los NFT son únicas; cada uno es diferente. Cada token tiene características y valores únicos. Todos son distinguibles entre sí y no son intercambiables.
+
+¿Qué es ERC-721? ERC-721 es un estándar abierto que describe cómo construir tokens no fungibles en cadenas de bloques compatibles con EVM (Ethereum Virtual Machine); es una interfaz estándar para tokens no fungibles; tiene un conjunto de reglas que facilitan el trabajo con NFT. Antes de continuar. [Especificación](https://docs.openzeppelin.com/contracts/3.x/api/token/erc721)
 
 ## Tecnologías utilizadas
 
@@ -88,10 +112,10 @@ Para ejecutar las pruebas es necesario ejecutar la siguiente instrucción
 
 Este proyecto fue desarrollado usando la siguiente documentación.
 
-- [ethers documentación ](https://docs.ethers.io/v5/)
-- [hardhat documentación ](https://hardhat.org/)
-- [reactjs documentación ](https://es.reactjs.org/)
-- [ipfs documentación ](https://ipfs.io/)
-- [Fullstack marketplace tutorial ](https://dev.to/edge-and-node/building-scalable-full-stack-apps-on-ethereum-with-polygon-2cfb)
-- [ethereum documentación ](https://ethereum.org/en/)
-- [nextjs documentación ](https://nextjs.org/)
+- [Ethers documentación](https://docs.ethers.io/v5/)
+- [Hardhat documentación](https://hardhat.org/)
+- [Reactjs documentación](https://es.reactjs.org/)
+- [IPFS documentación](https://ipfs.io/)
+- [Fullstack marketplace tutorial](https://dev.to/edge-and-node/building-scalable-full-stack-apps-on-ethereum-with-polygon-2cfb)
+- [Documentación Ethereum](https://ethereum.org/en/)
+- [Documentación nextjs](https://nextjs.org/)
